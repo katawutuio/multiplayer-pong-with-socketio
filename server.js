@@ -14,5 +14,5 @@ console.log(`Listening on port ${PORT}...`);
 /* create event listener for listen client connect and receive
  a socket to communication with client. */
 io.on('connection', (socket) => {
-    console.log('a user connected.');
+    console.log(`a user connected. ${socket.id}`);
 });
