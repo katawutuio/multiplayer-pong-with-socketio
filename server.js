@@ -16,14 +16,17 @@ console.log(`Listening on port ${PORT}...`);
 let readyPlayers = 0;
 
 io.on('connection', (socket) => {
-    
+
     console.log(`a user connected. ${socket.id}`);
 
     socket.on('ready', () => {
 
         readyPlayers++;
     
-        console.log(readyPlayers);
+        if (readyPlayers === 2) {
+            // broadcast to clients and send player two ID to set as referee
+            io.broadcast('startGame', socket.id);
+        }
     })
 
     
