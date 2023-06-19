@@ -21,11 +21,13 @@ io.on('connection', (socket) => {
 
     socket.on('ready', () => {
 
+        console.log('Player ready', socket.id);
+
         readyPlayers++;
     
         if (readyPlayers === 2) {
             // broadcast to clients and send player two ID to set as referee
-            io.broadcast('startGame', socket.id);
+            io.emit('startGame', socket.id);
         }
     })
 
